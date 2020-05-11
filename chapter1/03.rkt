@@ -2,23 +2,26 @@
 
 (#%require rackunit)
 
+(define (sqr x)
+    (* x x))
+
 (define (solution a b c)
     (if (> a b)
         (if (> b c)
             (+
-                (* a a)
-                (* b b))
+                (sqr a)
+                (sqr b))
             (+
-                (* a a)
-                (* c c))
+                (sqr a)
+                (sqr c))
         )
         (if (> a c)
             (+
-                (* a a)
-                (* b b))
+                (sqr a)
+                (sqr b))
             (+
-                (* b b)
-                (* c c))
+                (sqr b)
+                (sqr c))
         )
     )
 )
