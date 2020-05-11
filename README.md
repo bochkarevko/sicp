@@ -1,0 +1,2 @@
+# sicp
+Studying SICP
