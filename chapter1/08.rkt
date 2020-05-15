@@ -17,25 +17,26 @@
     (/  (+ x y)
         2))
 
-(define (improve-guess guess x)
-    (/  (+  (/  x
-                (sqr guess))
-            (* 2 guess))
-        3))
-
-(define (good-enough? guess x)
-    (>  0.001
-        (/ (abs (- x (cub guess)))
-            (abs x))))
-
-(define (cubrt-iter guess x)
-    (if (good-enough? guess x)
-        guess
-        (cubrt-iter (improve-guess guess x) x)))
-
 (define (cubrt x)
+
+    (define (good-enough? guess)
+        (>  0.001
+            (/ (abs (- x (cub guess)))
+                (abs x))))
+
+    (define (improve-guess guess)
+        (/  (+  (/  x
+                    (sqr guess))
+                (* 2 guess))
+            3))
+
+    (define (cubrt-iter guess)
+        (if (good-enough? guess)
+            guess
+            (cubrt-iter (improve-guess guess))))
+
     (if (= x 0) 0.0
-        (cubrt-iter 1.0 x)))
+        (cubrt-iter 1.0)))
 
 (check-equal? (cubrt 0.0) 0.0)
 (check-equal? (cubrt 0.000027) 0.03)

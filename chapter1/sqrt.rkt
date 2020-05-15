@@ -14,21 +14,22 @@
     (/  (+ x y)
         2))
 
-(define (improve-guess guess x)
-    (avg guess (/ x guess)))
-
-(define (good-enough? guess x) 
-    (> 0.001
-        (abs (- x
-                (sqr guess)))))
-
-(define (sqrt-iter guess x)
-    (if (good-enough? guess x)
-        guess
-        (sqrt-iter (improve-guess guess x) x)))
-
 (define (sqrt x)
-    (sqrt-iter 1.0 x))
+
+    (define (good-enough? guess) 
+        (> 0.001
+            (abs (- x
+                    (sqr guess)))))
+
+    (define (improve-guess guess)
+        (avg guess (/ x guess)))
+
+    (define (sqrt-iter guess)
+        (if (good-enough? guess)
+            guess
+            (sqrt-iter (improve-guess guess))))
+
+    (sqrt-iter 1.0))
 
 (check-equal? (sqrt 0.0) 0.0)
 (check-equal? (sqrt 0.0009) 0.03)
