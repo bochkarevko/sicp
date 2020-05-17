@@ -1,7 +1,7 @@
 # Sicp Studies
 
 - [ ] **Building Abstractions with Procedures**
-- [ ] The Elements of Programming
+- [X] The Elements of Programming
 - [ ] Procedures and the Processes They Generate
 - [ ] Formulating Abstractions with Higher-Order Procedures
 - [ ] **Building Abstractions with Data**
