@@ -2,9 +2,15 @@
 
 (#%require rackunit)
 
+(define (out-of-bounds? row col)
+    (or (> col row) (> 0 row) (> 0 col)))
+
+(define (edge-one? row col)
+    (or (= 0 col) (= row col)))
+
 (define (pascal row col)
-    (cond   ((or (> col row) (> 0 row) (> 0 col)) 0)
-            ((or (= 0 col) (= row col)) 1)
+    (cond   ((out-of-bounds? row col) 0)
+            ((edge-one? row col) 1)
             (else (+ (pascal (- row 1) (- col 1)) (pascal (- row 1) col)))))
 
 (check-equal? (pascal 0 0) 1)
