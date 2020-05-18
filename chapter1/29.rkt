@@ -17,9 +17,16 @@
         (+ (term a)
            (sum term (next a) next b))))
 
+(define (sum-iter term a next b)
+    (define (iter a acc)
+        (if (> a b)
+            acc
+            (iter (next a) (+ acc (term a)))))
+    (iter a 0))
+
 (define (integral f a b dx)
     (define (add-dx x) (+ x dx))
-    (* (sum f (+ a (/ dx 2.0)) add-dx b)
+    (* (sum-iter f (+ a (/ dx 2.0)) add-dx b)
        dx))
 
 (define (integral-simp f a b n)
@@ -32,7 +39,7 @@
                           (simp k)))
             (else (* 4
                      (simp k)))))
-    (/ (* h (sum term 0.0 inc n)) 3))
+    (/ (* h (sum-iter term 0.0 inc n)) 3))
 
 (check-equal? (integral cube 0 1 0.001) (integral-simp cube 0.0 1.0 100.0))
 (check-equal? (integral cube 0 1 0.001) (integral-simp cube 0.0 1.0 1000.0))
