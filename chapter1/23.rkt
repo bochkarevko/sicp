@@ -12,9 +12,13 @@
   (= 0 (remainder b a)))
 
 (define (find-divisor n test-divisor)
+  (define (next x)
+    (if (= x 2)
+        3
+        (+ x 2)))
   (cond ((> (sqr test-divisor) n) n)
         ((divides? test-divisor n) test-divisor)
-        (else (find-divisor n (inc test-divisor)))))
+        (else (find-divisor n (next test-divisor)))))
 
 (define (smallest-divisor n)
   (find-divisor n 2))
@@ -48,7 +52,7 @@
   (iter _begin))
 
 ;;; (search-for-primes 1000000100 1000000250)
-(display "with even divisors")
+(display "without even divisors")
 (newline)
 (timed-prime-test 1000000181)
 (timed-prime-test 1000000207)
