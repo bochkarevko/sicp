@@ -2,7 +2,7 @@
 
 - [ ] **Building Abstractions with Procedures**
 - [X] The Elements of Programming
-- [ ] Procedures and the Processes They Generate
+- [X] Procedures and the Processes They Generate
 - [ ] Formulating Abstractions with Higher-Order Procedures
 - [ ] **Building Abstractions with Data**
 - [ ] Introduction to Data Abstraction
