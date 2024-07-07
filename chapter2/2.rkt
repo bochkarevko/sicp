@@ -1,0 +1,35 @@
+#lang sicp
+
+; segment
+(define (make-segment x y)
+  (cons (min x y) (max x y))
+)
+(define (segment-start s) (car s))
+(define (segment-end s) (cdr s))
+(define (display-segment s)
+  (newline)
+  (display "[")
+  (display (segment-start s))
+  (display ", ")
+  (display (segment-end s))
+  (display "]")
+)
+; point
+(define (make-point x y)
+  (cons x y)
+)
+(define (point-x p) (car p))
+(define (point-y p) (cdr p))
+(define (display-point p)
+  (newline)
+  (display "(")
+  (display (point-x p))
+  (display ", ")
+  (display (point-y p))
+  (display ")")
+)
+
+(display-segment (make-segment 7 2))
+(display-point (make-point 7 2))
+; cursed
+(display-segment (make-point 7 2))
